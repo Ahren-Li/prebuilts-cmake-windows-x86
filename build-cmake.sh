@@ -20,7 +20,7 @@ case "$OS" in
 windows)
     #cmake -G "Visual Studio 12 2013" "$(cygpath -w $RD/$PROJ-$VER)"
     #devenv.com CMake.sln /Build Release /Out log.txt
-    cmake -G "Unix Makefiles"  -DCMAKE_INSTALL_PREFIX:PATH="$(cygpath -w $INSTALL)" "$(cygpath -w $RD/$PROJ-$VER)"
+    cmake -G "Unix Makefiles"  -DCMAKE_INSTALL_PREFIX:PATH="$(cygpath -w $INSTALL)" "$(cygpath -w $RD/$PROJ-$VER)" -DCMAKE_BUILD_TYPE=Release
     ;;
 *)
     $RD/$PROJ-$VER/configure --prefix=$INSTALL

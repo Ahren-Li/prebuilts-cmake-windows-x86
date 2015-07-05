@@ -22,6 +22,21 @@
 # 3) checkout the destination git repo to /tmp/prebuilts/$PROJ/$OS-x86/$VER
 # 4) cd $RD
 
+# OSX lacks a "realpath" bash command
+realpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+SCRIPT_FILE=$(realpath "$0")
+SCRIPT_DIR="$(dirname "$SCRIPT_FILE")"
+COMMON_FILE="$SCRIPT_DIR/$1"
+
+if [ ! -f "$SCRIPT_FILE" ]; then
+    echo "source this file before changing directory"
+    exit 1
+fi
+
+
 UNAME="$(uname)"
 case "$UNAME" in
 Linux)
@@ -45,7 +60,7 @@ Darwin)
         # MINGW32_NT-*
         PATH_PREFIX=
     fi
-    SCRATCH=$PATH_PREFIX/d/src/tmp
+    SCRATCH=/tmp
     USER=$USERNAME
     OS='windows'
     CORES=$NUMBER_OF_PROCESSORS
@@ -79,15 +94,6 @@ rm -rf $RD
 mkdir -p $INSTALL
 mkdir -p $RD
 cd $RD
-
-# OSX lacks a "realpath" bash command
-realpath() {
-    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
-}
-
-SCRIPT_FILE=$(realpath "$0")
-SCRIPT_DIR="$(dirname "$SCRIPT_FILE")"
-COMMON_FILE="$SCRIPT_DIR/$1"
 
 commit_and_push()
 {
