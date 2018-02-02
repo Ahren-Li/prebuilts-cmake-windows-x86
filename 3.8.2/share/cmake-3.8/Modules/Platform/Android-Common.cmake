@@ -7,12 +7,6 @@ if(__ANDROID_COMPILER_COMMON)
 endif()
 set(__ANDROID_COMPILER_COMMON 1)
 
-# Set all common NDK variables.
-if(EXISTS "${CMAKE_ANDROID_NDK}/build/cmake/cmake-hooks/Android-Common.cmake")
-  include(${CMAKE_ANDROID_NDK}/build/cmake/cmake-hooks/Android-Common.cmake)
-  return()
-endif()
-
 if(CMAKE_ANDROID_NDK)
   # <ndk>/build/core/definitions.mk
 

@@ -112,9 +112,6 @@ if(NOT CMAKE_ANDROID_NDK AND NOT CMAKE_ANDROID_STANDALONE_TOOLCHAIN)
   message(FATAL_ERROR "Android: Neither the NDK or a standalone toolchain was found.")
 endif()
 
-# Initialize platform wide information if one is available in Android-NDK.
-include(${CMAKE_ANDROID_NDK}/build/cmake/cmake-hooks/Android-Determine.cmake OPTIONAL)
-
 # Select an API.
 if(CMAKE_SYSTEM_VERSION)
   set(_ANDROID_API_VAR CMAKE_SYSTEM_VERSION)

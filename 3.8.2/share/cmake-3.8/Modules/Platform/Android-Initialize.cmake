@@ -11,12 +11,6 @@ if(CMAKE_VS_PLATFORM_NAME STREQUAL "Tegra-Android")
   return()
 endif()
 
-# Initialize sysroot if one is available in Android-NDK.
-if(EXISTS "${CMAKE_ANDROID_NDK}/build/cmake/cmake-hooks/Android-Initialize.cmake")
-  include(${CMAKE_ANDROID_NDK}/build/cmake/cmake-hooks/Android-Initialize.cmake)
-  return()
-endif()
-
 # Commonly used Android toolchain files that pre-date CMake upstream support
 # set CMAKE_SYSTEM_VERSION to 1.  Avoid interfering with them.
 if(CMAKE_SYSTEM_VERSION EQUAL 1)

@@ -20,12 +20,6 @@
 #     -target <triple>
 #     -gcc-toolchain <ndk>/toolchains/<triple-or-arch>-<gcc-version>
 
-# Determine compiler and update generic flags depending on the ABI
-if(EXISTS "${CMAKE_ANDROID_NDK}/build/cmake/cmake-hooks/Determine-Compiler-NDK.cmake")
-  include(${CMAKE_ANDROID_NDK}/build/cmake/cmake-hooks/Determine-Compiler-NDK.cmake)
-  return()
-endif()
-
 # Glob available toolchains in the NDK, restricted by any version request.
 if(CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION STREQUAL "clang")
   set(_ANDROID_TOOL_PATTERNS "*-clang" "*-clang[0-9].[0-9]")
